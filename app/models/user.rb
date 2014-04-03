@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :about, :github, :facebook, :twitter, :linkedin, :skype, :screenhero, :google_plus, :legal_agreement, :provider, :uid
 
-  validates_uniqueness_of :username,:email
+  validates_uniqueness_of :username, :email
   validates_presence_of :legal_agreement, :message => "Don't forget the legal stuff!", :on => :create
   validates :username, :length => { :in => 4..20 }
 
@@ -49,20 +49,6 @@ class User < ActiveRecord::Base
   def latest_lesson_completion
     self.lesson_completions.order(:created_at => :desc).first
   end
-
-  # def self.find_for_github_oauth(auth, signed_in_resource=nil)
-  #   user = User.where(:provider => auth.provider, :uid => auth.uid).first
-  #   if user
-  #     return user
-  #   else
-  #     registered_user = User.where(:email => auth.uid).first
-  #     if registered_user
-  #       return registered_user
-  #     else
-  #       user = User.create(name: auth.extra.raw_info.name, provider: auth.provider, uid: auth.uid, email: auth.email, password: Devise.friendly_token[0,20])
-  #     end
-  #   end
-  # end
 
   include Authentication::ActiveRecordHelpers #check in domain/authentication/active_record_helpers.rb
 
