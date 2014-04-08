@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
+<div>
   <%= render 'shared/disqus_forum' %>
-  <% else %>
-  <div id="moot-forum-reminder">
-    Welcome to the community forum! Please <%= link_to "sign in",login_path %> to post or reply.
-  <% end %>
+  <%= raw @discusjs %>
 </div>
+<% end %>
 
 
