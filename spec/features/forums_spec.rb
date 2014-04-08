@@ -6,11 +6,16 @@ describe "Forums" do
 
   describe "Forum Page" do
 
-    before { visit forum_path }
+    before {
+    @user=FactoryGirl.create(:user)
 
-    it { 
+      visit forum_path
+
+       }
+       binding.pry
+    it { page.should_not have_content('Login') }
       # save_and_open_page
-      should have_css('div#moot-forum') }
+
 
     # We will need to build some tests to verify that the forums load properly
 

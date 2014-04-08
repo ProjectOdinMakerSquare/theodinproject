@@ -23,7 +23,6 @@ class ForumsController < ApplicationController
       username: "#{current_user.username}",
       email: "#{current_user.email}"
     }.to_json
-
     # encode the data to base64
     message  = Base64.encode64(data).gsub("\n", "")
     # generate a timestamp for signing the message
